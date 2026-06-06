@@ -1,0 +1,12 @@
+CHECKLIST RAPIDO PARA ORDENAR TU DINERO
+
+1. Exporta tus movimientos a CSV o copia fecha, descripcion y monto.
+2. Separa cada fila entre Ingreso y Gasto.
+3. Usa categorias simples: Vivienda, Comida, Transporte, Salud, Deudas, Suscripciones, Ocio, Educacion, Ahorro/Inversion, Otros.
+4. Suma gastos por categoria.
+5. Marca suscripciones que no usas.
+6. Ordena deudas por tasa o por saldo.
+7. Decide una accion para los proximos 7 dias.
+
+El bundle completo agrega dashboard, formulas, calculadora de deudas, tracker de suscripciones y plan de 30 dias:
+https://mauroceron.github.io/kit-financiero-personal-bundle/
