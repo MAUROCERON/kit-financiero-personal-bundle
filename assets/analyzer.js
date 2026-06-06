@@ -1,4 +1,73 @@
 (function (global) {
+  const COPY = {
+    es: {
+      tooFewRows: "Pega un CSV con encabezados y al menos una fila.",
+      missingAmount: "No encontre una columna de monto/amount/valor.",
+      noCategories: "No se detectaron gastos categorizados.",
+      income: "Ingresos",
+      expense: "Gastos",
+      available: "Disponible",
+      savingsRate: "Tasa ahorro",
+      quickRead: "Lectura rapida",
+      transactionsRead: "Transacciones leidas",
+      subscriptionSignals: "Posibles suscripciones detectadas",
+      largestExpense: "Mayor gasto",
+      topCategories: "Top categorias de gasto",
+      category: "Categoria",
+      amount: "Monto",
+      expenseShare: "% gastos",
+      goodMargin: "Buen margen: protege el excedente.",
+      tightMargin: "Margen ajustado: revisa categorias grandes.",
+      alertMargin: "Alerta: gastaste mas de lo que entro.",
+      sample: `Fecha,Tipo,Categoria,Descripcion,Monto,Cuenta,Nota
+2026-06-01,Ingreso,Otros,Ingreso principal,2800,Banco,Ejemplo
+2026-06-02,Gasto,Vivienda,Arriendo,850,Banco,Ejemplo
+2026-06-03,Gasto,Comida,Mercado semanal,140,Tarjeta,Ejemplo
+2026-06-04,Gasto,Transporte,Gasolina o transporte,75,Tarjeta,Ejemplo
+2026-06-05,Gasto,Suscripciones,Streaming,15,Tarjeta,Ejemplo
+2026-06-06,Gasto,Ocio,Salida,35,Tarjeta,Ejemplo
+2026-06-07,Gasto,Ahorro/Inversion,Ahorro semanal,100,Banco,Ejemplo`,
+    },
+    en: {
+      tooFewRows: "Paste a CSV with headers and at least one transaction row.",
+      missingAmount: "I could not find an amount, value or transaction total column.",
+      noCategories: "No categorized expenses were detected.",
+      income: "Income",
+      expense: "Expenses",
+      available: "Available",
+      savingsRate: "Savings rate",
+      quickRead: "Quick read",
+      transactionsRead: "Transactions read",
+      subscriptionSignals: "Possible subscriptions detected",
+      largestExpense: "Largest expense",
+      topCategories: "Top expense categories",
+      category: "Category",
+      amount: "Amount",
+      expenseShare: "% expenses",
+      goodMargin: "Good margin: protect the surplus.",
+      tightMargin: "Tight margin: review your biggest categories.",
+      alertMargin: "Alert: spending was higher than income.",
+      sample: `Date,Type,Category,Description,Amount,Account,Note
+2026-06-01,Income,Other,Main income,2800,Bank,Sample
+2026-06-02,Expense,Housing,Rent,850,Bank,Sample
+2026-06-03,Expense,Groceries,Weekly groceries,140,Card,Sample
+2026-06-04,Expense,Transport,Fuel or transit,75,Card,Sample
+2026-06-05,Expense,Subscriptions,Streaming,15,Card,Sample
+2026-06-06,Expense,Fun,Dinner out,35,Card,Sample
+2026-06-07,Expense,Savings,Weekly savings transfer,100,Bank,Sample`,
+    },
+  };
+
+  function language() {
+    if (typeof document === "undefined") return "es";
+    return document.documentElement.lang && document.documentElement.lang.toLowerCase().startsWith("en") ? "en" : "es";
+  }
+
+  function text(key) {
+    const lang = language();
+    return (COPY[lang] && COPY[lang][key]) || COPY.es[key] || key;
+  }
+
   function parseCSV(text) {
     const rows = [];
     let row = [];
@@ -61,7 +130,7 @@
 
   function analyzeRows(rows) {
     if (rows.length < 2) {
-      return { error: "Pega un CSV con encabezados y al menos una fila." };
+      return { errorKey: "tooFewRows", error: COPY.es.tooFewRows };
     }
 
     const headers = rows[0];
@@ -74,7 +143,7 @@
     };
 
     if (idx.amount < 0) {
-      return { error: "No encontre una columna de monto/amount/valor." };
+      return { errorKey: "missingAmount", error: COPY.es.missingAmount };
     }
 
     const categories = {};
@@ -137,10 +206,16 @@
     const savingsRate = income ? available / income : 0;
     const status =
       savingsRate >= 0.2
-        ? "Buen margen: protege el excedente."
+        ? COPY.es.goodMargin
         : savingsRate >= 0
-          ? "Margen ajustado: revisa categorias grandes."
-          : "Alerta: gastaste mas de lo que entro.";
+          ? COPY.es.tightMargin
+          : COPY.es.alertMargin;
+    const statusEn =
+      savingsRate >= 0.2
+        ? COPY.en.goodMargin
+        : savingsRate >= 0
+          ? COPY.en.tightMargin
+          : COPY.en.alertMargin;
 
     return {
       transactionCount,
@@ -153,6 +228,7 @@
       largestExpense,
       examples,
       status,
+      statusEn,
     };
   }
 
@@ -173,7 +249,7 @@
     if (!output) return;
 
     if (result.error) {
-      output.innerHTML = `<div class="tool-alert">${result.error}</div>`;
+      output.innerHTML = `<div class="tool-alert">${escapeHtml(result.errorKey ? text(result.errorKey) : result.error)}</div>`;
       return;
     }
 
@@ -189,24 +265,24 @@
             `,
           )
           .join("")
-      : `<tr><td colspan="3">No se detectaron gastos categorizados.</td></tr>`;
+      : `<tr><td colspan="3">${text("noCategories")}</td></tr>`;
 
     output.innerHTML = `
       <div class="metric-grid">
-        <div class="metric"><span>Ingresos</span><strong>${currency(result.income)}</strong></div>
-        <div class="metric"><span>Gastos</span><strong>${currency(result.expense)}</strong></div>
-        <div class="metric"><span>Disponible</span><strong>${currency(result.available)}</strong></div>
-        <div class="metric"><span>Tasa ahorro</span><strong>${percent(result.savingsRate)}</strong></div>
+        <div class="metric"><span>${text("income")}</span><strong>${currency(result.income)}</strong></div>
+        <div class="metric"><span>${text("expense")}</span><strong>${currency(result.expense)}</strong></div>
+        <div class="metric"><span>${text("available")}</span><strong>${currency(result.available)}</strong></div>
+        <div class="metric"><span>${text("savingsRate")}</span><strong>${percent(result.savingsRate)}</strong></div>
       </div>
       <div class="tool-panel">
-        <h3>Lectura rapida</h3>
-        <p>${escapeHtml(result.status)}</p>
-        <p>Transacciones leidas: <strong>${result.transactionCount}</strong>. Posibles suscripciones detectadas: <strong>${result.subscriptionSignals}</strong>. Mayor gasto: <strong>${currency(result.largestExpense.amount)}</strong> ${escapeHtml(result.largestExpense.description || "")}.</p>
+        <h3>${text("quickRead")}</h3>
+        <p>${escapeHtml(language() === "en" ? result.statusEn : result.status)}</p>
+        <p>${text("transactionsRead")}: <strong>${result.transactionCount}</strong>. ${text("subscriptionSignals")}: <strong>${result.subscriptionSignals}</strong>. ${text("largestExpense")}: <strong>${currency(result.largestExpense.amount)}</strong> ${escapeHtml(result.largestExpense.description || "")}.</p>
       </div>
       <div class="tool-panel">
-        <h3>Top categorias de gasto</h3>
+        <h3>${text("topCategories")}</h3>
         <table class="result-table">
-          <thead><tr><th>Categoria</th><th>Monto</th><th>% gastos</th></tr></thead>
+          <thead><tr><th>${text("category")}</th><th>${text("amount")}</th><th>${text("expenseShare")}</th></tr></thead>
           <tbody>${categoryHtml}</tbody>
         </table>
       </div>
@@ -227,14 +303,7 @@
     const run = document.querySelector("[data-run-analysis]");
     const sample = document.querySelector("[data-load-sample]");
     const file = document.querySelector("[data-file-input]");
-    const sampleText = `Fecha,Tipo,Categoria,Descripcion,Monto,Cuenta,Nota
-2026-06-01,Ingreso,Otros,Ingreso principal,2800,Banco,Ejemplo
-2026-06-02,Gasto,Vivienda,Arriendo,850,Banco,Ejemplo
-2026-06-03,Gasto,Comida,Mercado semanal,140,Tarjeta,Ejemplo
-2026-06-04,Gasto,Transporte,Gasolina o transporte,75,Tarjeta,Ejemplo
-2026-06-05,Gasto,Suscripciones,Streaming,15,Tarjeta,Ejemplo
-2026-06-06,Gasto,Ocio,Salida,35,Tarjeta,Ejemplo
-2026-06-07,Gasto,Ahorro/Inversion,Ahorro semanal,100,Banco,Ejemplo`;
+    const sampleText = text("sample");
 
     if (!input || !run) return;
 
