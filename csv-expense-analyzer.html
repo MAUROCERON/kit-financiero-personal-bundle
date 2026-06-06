@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Free CSV expense analyzer that runs locally in your browser. Calculate income, expenses, available cash, savings rate and top categories.">
+  <title>Free CSV Expense Analyzer</title>
+  <link rel="canonical" href="https://mauroceron.github.io/kit-financiero-personal-bundle/csv-expense-analyzer.html">
+  <link rel="alternate" hreflang="es" href="https://mauroceron.github.io/kit-financiero-personal-bundle/analizador-csv.html">
+  <link rel="alternate" hreflang="en" href="https://mauroceron.github.io/kit-financiero-personal-bundle/csv-expense-analyzer.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Personal Finance Spreadsheet Bundle">
+  <meta property="og:title" content="Free CSV Expense Analyzer">
+  <meta property="og:description" content="Paste or upload a CSV and get a quick private read on income, expenses, savings rate, categories and subscription signals.">
+  <meta property="og:url" content="https://mauroceron.github.io/kit-financiero-personal-bundle/csv-expense-analyzer.html">
+  <meta property="og:image" content="https://mauroceron.github.io/kit-financiero-personal-bundle/assets/01-portada-marketplace.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free CSV Expense Analyzer">
+  <meta name="twitter:description" content="A private browser-based CSV analyzer for personal finance exports.">
+  <meta name="twitter:image" content="https://mauroceron.github.io/kit-financiero-personal-bundle/assets/01-portada-marketplace.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free CSV Expense Analyzer",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": "https://mauroceron.github.io/kit-financiero-personal-bundle/csv-expense-analyzer.html",
+    "description": "Browser-based CSV expense analyzer for income, expenses, available cash, savings rate, categories and possible subscription signals.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <div class="topbar">
+    <a class="brand" href="en.html">Finance Kit</a>
+    <nav class="nav" aria-label="Main">
+      <a href="en.html">Home</a>
+      <a href="./">ES</a>
+      <a href="pedido-custom.html">Custom order</a>
+      <a href="muestra-gratis.html">Free sample</a>
+      <a href="en.html#buy">Buy</a>
+    </nav>
+  </div>
+
+  <header class="page-hero">
+    <div class="hero-inner narrow">
+      <p class="eyebrow">Free private tool</p>
+      <h1>Free CSV Expense Analyzer</h1>
+      <p class="hero-copy">Paste or upload a CSV export and get income, expenses, available cash, savings rate, top categories and possible subscription signals. Your data stays in your browser.</p>
+      <div class="actions">
+        <a class="btn" href="#tool">Analyze a CSV</a>
+        <a class="btn secondary" href="en.html#buy">Buy spreadsheet bundle</a>
+        <a class="btn" href="pedido-custom.html">Get a custom dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="tool">
+    <div class="section-inner split tool-layout">
+      <div>
+        <p class="eyebrow">No upload to server</p>
+        <h2>Turn a raw bank CSV into a quick money read.</h2>
+        <p class="lede">Recommended columns: Date, Type, Category, Description, Amount, Account and Note. It also works with headers such as fecha, monto, valor, category, merchant or description.</p>
+
+        <div class="tool-card">
+          <label class="file-label">
+            <span>Upload CSV</span>
+            <input type="file" accept=".csv,text/csv" data-file-input>
+          </label>
+          <textarea data-csv-input spellcheck="false" aria-label="Expense CSV"></textarea>
+          <div class="actions compact">
+            <button class="btn" type="button" data-run-analysis>Analyze CSV</button>
+            <button class="btn secondary" type="button" data-load-sample>Load sample</button>
+          </div>
+          <p class="notice">Do not paste passwords, complete card numbers or anything you do not want to handle locally. The analyzer runs in your browser.</p>
+        </div>
+      </div>
+
+      <div data-output class="tool-results" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="section-inner split">
+      <div>
+        <p class="eyebrow">Upgrade path</p>
+        <h2>Want the full dashboard instead of a quick read?</h2>
+        <p class="lede">The free analyzer helps you spot the shape of your spending. The paid bundle adds an editable workbook, formulas, debt payoff, subscription tracking and a 30-day cleanup plan. The custom service cleans your file for you.</p>
+      </div>
+      <div class="grid-3">
+        <article class="offer">
+          <h3>Bundle</h3>
+          <div class="price">USD 15</div>
+          <a class="btn" href="en.html#buy">Buy bundle</a>
+        </article>
+        <article class="offer">
+          <h3>Custom</h3>
+          <div class="price">USD 49</div>
+          <a class="btn secondary" href="pedido-custom.html">Order dashboard</a>
+        </article>
+        <article class="offer">
+          <h3>Sample</h3>
+          <div class="price">Free</div>
+          <a class="btn" href="assets/muestra-presupuesto-7-dias.csv" download>Download CSV</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="section-inner">
+      <span>Free CSV Expense Analyzer</span>
+      <span>Contact and PayPal: mauro_ceron1@hotmail.com</span>
+    </div>
+  </footer>
+
+  <script src="assets/analyzer.js"></script>
+</body>
+</html>
