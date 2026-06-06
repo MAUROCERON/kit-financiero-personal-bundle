@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Formulario de brief para pedir un dashboard financiero custom en Excel o Google Sheets.">
+  <title>Pedido Dashboard Custom</title>
+  <link rel="canonical" href="https://mauroceron.github.io/kit-financiero-personal-bundle/pedido-custom.html">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <div class="topbar">
+    <a class="brand" href="./">Kit Financiero Personal</a>
+    <nav class="nav" aria-label="Principal">
+      <a href="./">Inicio</a>
+      <a href="analizador-csv.html">Analizador</a>
+      <a href="servicio-dashboard-financiero.html">Servicio custom</a>
+      <a href="muestra-gratis.html">Muestra gratis</a>
+    </nav>
+  </div>
+
+  <header class="page-hero">
+    <div class="hero-inner narrow">
+      <p class="eyebrow">Brief de pedido</p>
+      <h1>Pide tu dashboard financiero custom</h1>
+      <p class="hero-copy">Completa el brief, copia/envia el email generado y paga el monto estimado por PayPal. No compartas contrasenas ni accesos bancarios.</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-inner split tool-layout">
+      <form class="tool-card order-form">
+        <label>Nombre
+          <input data-order-field name="name" type="text" placeholder="Tu nombre">
+        </label>
+        <label>Email de respuesta
+          <input data-order-field name="email" type="email" placeholder="tu@email.com">
+        </label>
+        <label>Moneda
+          <select data-order-field name="currency">
+            <option>USD</option>
+            <option>COP</option>
+            <option>EUR</option>
+            <option>MXN</option>
+            <option>Otra</option>
+          </select>
+        </label>
+        <label>Filas aproximadas
+          <select data-order-field name="rows">
+            <option value="100">Hasta 100</option>
+            <option value="300" selected>Hasta 300</option>
+            <option value="800">Hasta 800</option>
+            <option value="1200">Mas de 800</option>
+          </select>
+        </label>
+        <label>Formato de entrega
+          <select data-order-field name="format">
+            <option>Excel</option>
+            <option>Google Sheets</option>
+            <option>Ambos</option>
+          </select>
+        </label>
+        <label>Tipo de uso
+          <select data-order-field name="useCase">
+            <option>Personal</option>
+            <option>Pareja/familia</option>
+            <option>Freelancer</option>
+            <option>Pequeno negocio</option>
+          </select>
+        </label>
+        <label>Entrega urgente
+          <select data-order-field name="rush">
+            <option>No</option>
+            <option>Si</option>
+          </select>
+        </label>
+        <label>Notas
+          <textarea data-order-field name="notes" rows="5" placeholder="Ej: quiero separar gastos personales y negocio, detectar suscripciones y ver categorias grandes."></textarea>
+        </label>
+      </form>
+
+      <div class="tool-results">
+        <p class="eyebrow">Resumen</p>
+        <h2>Precio estimado: <span data-estimated-price>USD 49</span></h2>
+        <textarea data-brief-output class="brief-output" readonly></textarea>
+        <div class="actions compact">
+          <button class="btn" type="button" data-copy-brief>Copiar brief</button>
+          <a class="btn secondary" data-mailto href="mailto:mauro_ceron1@hotmail.com">Enviar email</a>
+        </div>
+        <form class="pay-inline" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="mauro_ceron1@hotmail.com">
+          <input type="hidden" name="item_name" value="Dashboard financiero custom">
+          <input type="hidden" name="amount" value="49.00" data-paypal-amount>
+          <input type="hidden" name="currency_code" value="USD">
+          <input type="hidden" name="return" value="https://mauroceron.github.io/kit-financiero-personal-bundle/gracias.html">
+          <input type="hidden" name="cancel_return" value="https://mauroceron.github.io/kit-financiero-personal-bundle/pedido-custom.html">
+          <button class="btn" type="submit">Pagar estimado por PayPal</button>
+        </form>
+        <p class="notice">Base: USD 49 hasta 300 filas. Hasta 800 filas: USD 95. Mas de 800 filas: desde USD 149. Urgente suma USD 25.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="section-inner">
+      <span>Pedido dashboard custom</span>
+      <span>PayPal/contacto: mauro_ceron1@hotmail.com</span>
+    </div>
+  </footer>
+
+  <script src="assets/order.js"></script>
+</body>
+</html>
