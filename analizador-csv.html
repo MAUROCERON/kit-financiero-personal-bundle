@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Analizador gratis de CSV de gastos. Calcula ingresos, gastos, disponible, tasa de ahorro y categorias en tu navegador.">
+  <title>Analizador Gratis de CSV de Gastos</title>
+  <link rel="canonical" href="https://mauroceron.github.io/kit-financiero-personal-bundle/analizador-csv.html">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <div class="topbar">
+    <a class="brand" href="./">Kit Financiero Personal</a>
+    <nav class="nav" aria-label="Principal">
+      <a href="./">Inicio</a>
+      <a href="presupuesto-personal-excel.html">Bundle</a>
+      <a href="servicio-dashboard-financiero.html">Servicio custom</a>
+      <a href="muestra-gratis.html">Muestra gratis</a>
+    </nav>
+  </div>
+
+  <header class="page-hero">
+    <div class="hero-inner narrow">
+      <p class="eyebrow">Herramienta gratis</p>
+      <h1>Analizador CSV de gastos en tu navegador</h1>
+      <p class="hero-copy">Pega o sube un CSV y mira ingresos, gastos, disponible, tasa de ahorro y categorias principales. Los datos no salen de tu navegador.</p>
+      <div class="actions">
+        <a class="btn" href="#herramienta">Probar ahora</a>
+        <a class="btn secondary" href="servicio-dashboard-financiero.html">Quiero dashboard custom</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="herramienta">
+    <div class="section-inner split tool-layout">
+      <div>
+        <p class="eyebrow">Privado y local</p>
+        <h2>Convierte un CSV en una lectura rapida.</h2>
+        <p class="lede">Formato recomendado: Fecha, Tipo, Categoria, Descripcion, Monto, Cuenta, Nota. Tambien funciona si tu archivo usa encabezados como amount, category o description.</p>
+
+        <div class="tool-card">
+          <label class="file-label">
+            <span>Subir CSV</span>
+            <input type="file" accept=".csv,text/csv" data-file-input>
+          </label>
+          <textarea data-csv-input spellcheck="false" aria-label="CSV de gastos"></textarea>
+          <div class="actions compact">
+            <button class="btn" type="button" data-run-analysis>Analizar CSV</button>
+            <button class="btn secondary" type="button" data-load-sample>Cargar muestra</button>
+          </div>
+          <p class="notice">No pegues contrasenas, numeros completos de tarjeta ni datos que no quieras compartir. La herramienta corre localmente en tu navegador.</p>
+        </div>
+      </div>
+
+      <div data-output class="tool-results" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="section-inner split">
+      <div>
+        <p class="eyebrow">Siguiente paso</p>
+        <h2>Si quieres el dashboard completo, compra el bundle o pide limpieza custom.</h2>
+        <p class="lede">La herramienta gratuita da una lectura rapida. El bundle agrega workbook editable, formulas, deuda, suscripciones y plan de 30 dias. El servicio custom limpia tu archivo por ti.</p>
+      </div>
+      <div class="grid-3">
+        <article class="offer">
+          <h3>Bundle</h3>
+          <div class="price">USD 15</div>
+          <a class="btn" href="./#comprar">Comprar bundle</a>
+        </article>
+        <article class="offer">
+          <h3>Custom</h3>
+          <div class="price">USD 49</div>
+          <a class="btn secondary" href="servicio-dashboard-financiero.html#pagar">Pedir dashboard</a>
+        </article>
+        <article class="offer">
+          <h3>Muestra</h3>
+          <div class="price">Gratis</div>
+          <a class="btn" href="muestra-gratis.html">Descargar</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="section-inner">
+      <span>Analizador gratis de CSV de gastos</span>
+      <span>PayPal/contacto: mauro_ceron1@hotmail.com</span>
+    </div>
+  </footer>
+
+  <script src="assets/analyzer.js"></script>
+</body>
+</html>
