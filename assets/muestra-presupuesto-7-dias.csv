@@ -1,0 +1,8 @@
+Fecha,Tipo,Categoria,Descripcion,Monto,Cuenta,Nota
+2026-06-01,Ingreso,Otros,Ingreso principal,2800,Banco,Ejemplo
+2026-06-02,Gasto,Vivienda,Arriendo,850,Banco,Ejemplo
+2026-06-03,Gasto,Comida,Mercado semanal,140,Tarjeta,Ejemplo
+2026-06-04,Gasto,Transporte,Gasolina o transporte,75,Tarjeta,Ejemplo
+2026-06-05,Gasto,Suscripciones,Streaming,15,Tarjeta,Ejemplo
+2026-06-06,Gasto,Ocio,Salida,35,Tarjeta,Ejemplo
+2026-06-07,Gasto,Ahorro/Inversion,Ahorro semanal,100,Banco,Ejemplo
