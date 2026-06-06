@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Order a custom finance dashboard from a CSV or Excel expense file. Starts at USD 49, paid by PayPal.">
+  <title>Order a Custom Finance Dashboard</title>
+  <link rel="canonical" href="https://mauroceron.github.io/kit-financiero-personal-bundle/custom-dashboard-order.html">
+  <link rel="alternate" hreflang="es" href="https://mauroceron.github.io/kit-financiero-personal-bundle/pedido-custom.html">
+  <link rel="alternate" hreflang="en" href="https://mauroceron.github.io/kit-financiero-personal-bundle/custom-dashboard-order.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Personal Finance Spreadsheet Bundle">
+  <meta property="og:title" content="Order a Custom Finance Dashboard">
+  <meta property="og:description" content="Turn a CSV or Excel expense export into a clean dashboard in Excel or Google Sheets. Starts at USD 49.">
+  <meta property="og:url" content="https://mauroceron.github.io/kit-financiero-personal-bundle/custom-dashboard-order.html">
+  <meta property="og:image" content="https://mauroceron.github.io/kit-financiero-personal-bundle/assets/05-servicio-custom-49.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Order a Custom Finance Dashboard">
+  <meta name="twitter:description" content="Brief, price estimate, email handoff and PayPal payment for a custom finance dashboard.">
+  <meta name="twitter:image" content="https://mauroceron.github.io/kit-financiero-personal-bundle/assets/05-servicio-custom-49.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Custom finance dashboard",
+    "description": "CSV or Excel cleanup and dashboard service for personal, freelance or small-business expenses.",
+    "provider": { "@type": "Person", "email": "mauro_ceron1@hotmail.com" },
+    "areaServed": "Online",
+    "offers": {
+      "@type": "Offer",
+      "price": "49.00",
+      "priceCurrency": "USD",
+      "url": "https://mauroceron.github.io/kit-financiero-personal-bundle/custom-dashboard-order.html"
+    }
+  }
+  </script>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <div class="topbar">
+    <a class="brand" href="en.html">Finance Kit</a>
+    <nav class="nav" aria-label="Main">
+      <a href="en.html">Home</a>
+      <a href="csv-expense-analyzer.html">Free analyzer</a>
+      <a href="en.html#buy">Bundle</a>
+      <a href="./">ES</a>
+    </nav>
+  </div>
+
+  <header class="page-hero">
+    <div class="hero-inner narrow">
+      <p class="eyebrow">Custom order brief</p>
+      <h1>Order a custom finance dashboard</h1>
+      <p class="hero-copy">Complete the brief, send the generated email and pay the estimated amount by PayPal. Do not share bank passwords or account logins.</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-inner split tool-layout">
+      <form class="tool-card order-form">
+        <label>Name
+          <input data-order-field name="name" type="text" placeholder="Your name">
+        </label>
+        <label>Reply email
+          <input data-order-field name="email" type="email" placeholder="you@email.com">
+        </label>
+        <label>Currency
+          <select data-order-field name="currency">
+            <option>USD</option>
+            <option>COP</option>
+            <option>EUR</option>
+            <option>MXN</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>Approximate rows
+          <select data-order-field name="rows">
+            <option value="100">Up to 100</option>
+            <option value="300" selected>Up to 300</option>
+            <option value="800">Up to 800</option>
+            <option value="1200">More than 800</option>
+          </select>
+        </label>
+        <label>Delivery format
+          <select data-order-field name="format">
+            <option>Excel</option>
+            <option>Google Sheets</option>
+            <option>Both</option>
+          </select>
+        </label>
+        <label>Use case
+          <select data-order-field name="useCase">
+            <option>Personal</option>
+            <option>Couple/family</option>
+            <option>Freelancer</option>
+            <option>Small business</option>
+          </select>
+        </label>
+        <label>Rush delivery
+          <select data-order-field name="rush">
+            <option>No</option>
+            <option>Yes</option>
+          </select>
+        </label>
+        <label>Notes
+          <textarea data-order-field name="notes" rows="5" placeholder="Example: I want to separate personal and business expenses, detect subscriptions and see the biggest categories."></textarea>
+        </label>
+      </form>
+
+      <div class="tool-results">
+        <p class="eyebrow">Summary</p>
+        <h2>Estimated price: <span data-estimated-price>USD 49</span></h2>
+        <textarea data-brief-output class="brief-output" readonly></textarea>
+        <div class="actions compact">
+          <button class="btn" type="button" data-copy-brief>Copy brief</button>
+          <a class="btn secondary" data-mailto href="mailto:mauro_ceron1@hotmail.com">Send email</a>
+        </div>
+        <form class="pay-inline" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="mauro_ceron1@hotmail.com">
+          <input type="hidden" name="item_name" value="Custom finance dashboard">
+          <input type="hidden" name="amount" value="49.00" data-paypal-amount>
+          <input type="hidden" name="currency_code" value="USD">
+          <input type="hidden" name="return" value="https://mauroceron.github.io/kit-financiero-personal-bundle/gracias.html">
+          <input type="hidden" name="cancel_return" value="https://mauroceron.github.io/kit-financiero-personal-bundle/custom-dashboard-order.html">
+          <button class="btn" type="submit">Pay estimate by PayPal</button>
+        </form>
+        <p class="notice">Base: USD 49 for up to 300 rows. Up to 800 rows: USD 95. More than 800 rows: from USD 149. Rush adds USD 25.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="section-inner">
+      <span>Custom finance dashboard order</span>
+      <span>Contact and PayPal: mauro_ceron1@hotmail.com</span>
+    </div>
+  </footer>
+
+  <script src="assets/order.js"></script>
+</body>
+</html>
