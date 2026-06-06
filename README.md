@@ -5,6 +5,10 @@ Landing estatica para vender:
 - Bundle digital: USD 15.
 - Servicio custom: USD 49.
 
+URL publica:
+
+https://mauroceron.github.io/kit-financiero-personal-bundle/
+
 ## Publicacion
 
 Puede subirse como sitio estatico a GitHub Pages, Vercel, Netlify, Cloudflare Pages o cualquier hosting de archivos.
