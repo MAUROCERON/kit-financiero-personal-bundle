@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mauroceron.github.io/kit-financiero-personal-bundle/sitemap.xml
