@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kit financiero personal en Excel y Google Sheets para presupuesto, deudas, suscripciones y ahorro.">
+  <title>Kit Financiero Personal Bundle</title>
+  <link rel="preconnect" href="https://www.paypal.com">
+  <style>
+    :root {
+      --navy: #122c47;
+      --ink: #17202a;
+      --muted: #53616f;
+      --teal: #169b8f;
+      --gold: #f2c14e;
+      --paper: #f7f8f3;
+      --white: #ffffff;
+      --line: #d9e1ea;
+      --red: #bf4b3f;
+      --shadow: 0 28px 90px rgba(18, 44, 71, 0.18);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.5;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+
+    .topbar {
+      position: fixed;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 5vw;
+      color: var(--white);
+      background: rgba(18, 44, 71, 0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .brand {
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav a {
+      text-decoration: none;
+      opacity: 0.88;
+    }
+
+    .nav a:hover { opacity: 1; }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      align-items: end;
+      padding: 112px 5vw 54px;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(18, 44, 71, 0.96), rgba(18, 44, 71, 0.78) 42%, rgba(18, 44, 71, 0.34)),
+        url("assets/dashboard-raw.png") center / cover;
+    }
+
+    .hero-inner {
+      max-width: 780px;
+      padding-bottom: 24px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 20px;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      margin: 24px 0 0;
+      font-size: clamp(18px, 2vw, 24px);
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .hero-actions, .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 20px;
+      border: 0;
+      border-radius: 7px;
+      color: var(--white);
+      background: var(--teal);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(22, 155, 143, 0.28);
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn.secondary {
+      color: var(--ink);
+      background: var(--gold);
+      box-shadow: 0 12px 28px rgba(242, 193, 78, 0.24);
+    }
+
+    section {
+      padding: 74px 5vw;
+    }
+
+    .section-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+      gap: 44px;
+      align-items: center;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: clamp(31px, 4vw, 54px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      margin: 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .proof {
+      min-height: 128px;
+      padding: 20px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 12px 36px rgba(18, 44, 71, 0.06);
+    }
+
+    .proof strong {
+      display: block;
+      margin-bottom: 8px;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 15px;
+      color: var(--navy);
+    }
+
+    .showcase {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .band {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .band .lede { color: rgba(255, 255, 255, 0.78); }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 34px;
+    }
+
+    .offer {
+      padding: 28px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+    }
+
+    .offer h3 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.1;
+    }
+
+    .price {
+      margin: 8px 0 16px;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 44px;
+      font-weight: 900;
+      color: var(--teal);
+    }
+
+    .offer ul {
+      margin: 18px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .offer li { margin-bottom: 8px; }
+
+    .notice {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .step {
+      padding: 24px;
+      border-top: 4px solid var(--teal);
+      background: var(--white);
+      border-radius: 8px;
+    }
+
+    .step span {
+      display: block;
+      margin-bottom: 12px;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--red);
+      text-transform: uppercase;
+    }
+
+    footer {
+      padding: 38px 5vw;
+      color: rgba(255, 255, 255, 0.72);
+      background: #0d2237;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 13px;
+    }
+
+    footer .section-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 850px) {
+      .topbar { position: absolute; }
+      .nav { display: none; }
+      .hero {
+        min-height: 88vh;
+        background:
+          linear-gradient(180deg, rgba(18, 44, 71, 0.94), rgba(18, 44, 71, 0.78)),
+          url("assets/dashboard-raw.png") center / cover;
+      }
+      .split, .pricing, .proof-grid, .steps {
+        grid-template-columns: 1fr;
+      }
+      section { padding: 56px 5vw; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">Kit Financiero Personal</div>
+    <nav class="nav" aria-label="Principal">
+      <a href="#bundle">Bundle</a>
+      <a href="#custom">Servicio custom</a>
+      <a href="#comprar">Comprar</a>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Excel + Google Sheets</p>
+      <h1>Kit Financiero Personal Bundle</h1>
+      <p class="hero-copy">Presupuesto, deudas, suscripciones y un plan de 30 dias para convertir movimientos sueltos en decisiones concretas.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#comprar">Comprar bundle USD 15</a>
+        <a class="btn secondary" href="#custom">Pedir dashboard custom</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="bundle">
+    <div class="section-inner split">
+      <div>
+        <p class="eyebrow">Orden sin empezar desde cero</p>
+        <h2>Una hoja practica para ver que pasa con tu dinero.</h2>
+        <p class="lede">El bundle incluye un workbook editable, un CSV base para transacciones y un PDF de 30 dias. Funciona para presupuesto personal, parejas, freelancers y pequenos negocios que todavia viven en hojas sueltas.</p>
+        <div class="proof-grid">
+          <div class="proof"><strong>Dashboard mensual</strong>Ingresos, gastos, disponible, tasa de ahorro y flujo por mes.</div>
+          <div class="proof"><strong>Deudas y fugas</strong>Calculadora de deudas y tracker de suscripciones con ahorro potencial.</div>
+          <div class="proof"><strong>Accion guiada</strong>PDF de 30 dias para cargar datos, decidir recortes y cerrar el mes.</div>
+        </div>
+      </div>
+      <div class="showcase">
+        <img src="assets/02-dashboard-mensual.png" alt="Preview del dashboard financiero mensual">
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="section-inner split">
+      <div class="showcase">
+        <img src="assets/03-hojas-clave.png" alt="Preview de hojas de presupuesto, deudas y suscripciones">
+      </div>
+      <div>
+        <p class="eyebrow">Que recibes</p>
+        <h2>Workbook, bonos y soporte manual si compras directo.</h2>
+        <p class="lede">La compra directa por PayPal se entrega manualmente al email del comprador. Si prefieres descarga automatica, usa Payhip o Ko-fi cuando el producto este publicado alli.</p>
+        <div class="actions">
+          <a class="btn secondary" href="#comprar">Ver opciones</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="custom">
+    <div class="section-inner split">
+      <div>
+        <p class="eyebrow">Servicio de mayor ticket</p>
+        <h2>Te convierto un CSV o Excel de gastos en un dashboard limpio.</h2>
+        <p class="lede">No se piden contrasenas ni accesos bancarios. Solo un CSV/XLSX exportado o una muestra anonimizada con fecha, descripcion y monto.</p>
+        <div class="steps">
+          <div class="step"><span>Paso 1</span>Envias el archivo o muestra anonimizada.</div>
+          <div class="step"><span>Paso 2</span>Categorizo, limpio y organizo gastos.</div>
+          <div class="step"><span>Paso 3</span>Recibes dashboard en Excel o Google Sheets.</div>
+        </div>
+      </div>
+      <div class="showcase">
+        <img src="assets/05-servicio-custom-49.png" alt="Servicio custom de dashboard financiero por USD 49">
+      </div>
+    </div>
+  </section>
+
+  <section id="comprar" class="band">
+    <div class="section-inner">
+      <p class="eyebrow">Comprar</p>
+      <h2>Dos caminos para llegar rapido a orden financiero.</h2>
+      <p class="lede">Pagos por PayPal a mauro_ceron1@hotmail.com. Para entrega directa, reenvia el comprobante al mismo correo.</p>
+
+      <div class="pricing">
+        <article class="offer">
+          <h3>Bundle digital</h3>
+          <div class="price">USD 15</div>
+          <p>Workbook editable, PDF de 30 dias, CSV base, licencia personal y guia incluida.</p>
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+            <input type="hidden" name="cmd" value="_xclick">
+            <input type="hidden" name="business" value="mauro_ceron1@hotmail.com">
+            <input type="hidden" name="item_name" value="Kit Financiero Personal Bundle">
+            <input type="hidden" name="amount" value="15.00">
+            <input type="hidden" name="currency_code" value="USD">
+            <button class="btn" type="submit">Pagar bundle</button>
+          </form>
+          <ul>
+            <li>Excel + Google Sheets</li>
+            <li>Entrega manual por email si compras directo</li>
+            <li>Ideal para empezar hoy</li>
+          </ul>
+          <p class="notice">Producto digital. No incluye asesoria financiera, fiscal ni legal.</p>
+        </article>
+
+        <article class="offer">
+          <h3>Dashboard custom</h3>
+          <div class="price">USD 49</div>
+          <p>Limpieza y dashboard a partir de tu CSV/XLSX de gastos, con categorias y resumen accionable.</p>
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+            <input type="hidden" name="cmd" value="_xclick">
+            <input type="hidden" name="business" value="mauro_ceron1@hotmail.com">
+            <input type="hidden" name="item_name" value="Dashboard financiero custom">
+            <input type="hidden" name="amount" value="49.00">
+            <input type="hidden" name="currency_code" value="USD">
+            <button class="btn secondary" type="submit">Pagar custom</button>
+          </form>
+          <ul>
+            <li>Hasta 300 filas en la oferta base</li>
+            <li>Una revision incluida</li>
+            <li>No compartas contrasenas ni logins</li>
+          </ul>
+          <p class="notice">Luego del pago, envia archivo y preferencias de moneda/categorias.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="section-inner">
+      <span>Kit Financiero Personal Bundle</span>
+      <span>Contacto y PayPal: mauro_ceron1@hotmail.com</span>
+    </div>
+  </footer>
+</body>
+</html>
